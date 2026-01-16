@@ -7,21 +7,19 @@ import java.util.Scanner;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-public class PersonWriter {
+public class ProductWriter {
     public static void main(String[] args)
     {
-        // Person generator
+        // Product generator
 //        a.	ID (a String)
-//        b.	FirstName
-//        c.	LastName
-//        d.	Title (a string like Mr., Mrs., Ms., Dr., etc.)
-//        e.	YearOfBirth (an int)
+//        b.	name
+//        c.	description
+//        e.	cost (a double)
 
         String ID = "";
-        String fName = "";
-        String lName = "";
-        String title = "";
-        int YOB = 0;
+        String name = "";
+        String description = "";
+        double cost = 0;
         String csvRec = "";
         boolean done = false;
 
@@ -33,16 +31,15 @@ public class PersonWriter {
         do {
 
 
-            // get the five data fields
+            // get the four data fields
 
             ID = SafeInput.getNonZeroLenString(in, "Enter the ID");
-            fName = SafeInput.getNonZeroLenString(in, "Enter the first name");
-            lName = SafeInput.getNonZeroLenString(in, "Enter the last name");
-            title = SafeInput.getNonZeroLenString(in, "Enter the title");
-            YOB = SafeInput.getRangedInt(in, "Enter the year for the age calc: ", 1000, 9999);
+            name = SafeInput.getNonZeroLenString(in, "Enter the product name");
+            description = SafeInput.getNonZeroLenString(in, "Enter the product description");
+            cost = SafeInput.getRangedDouble(in, "Enter the cost of the product: ", 10, 9999);
 
             // combine them into a single csv record
-            csvRec = ID + ", " + fName + ", " + lName + ", " + title + ", " + YOB;
+            csvRec = ID + ", " + name + ", " + description + ", " + cost;
 
             // add it to the ArrayList
             recs.add(csvRec);
@@ -61,7 +58,7 @@ public class PersonWriter {
         // (may need to adjust for other IDE)
         // Not sure if the toolkit is thread safe...
         File workingDirectory = new File(System.getProperty("user.dir"));
-        Path file = Paths.get(workingDirectory.getPath() + "/src/PersonTestData.txt");
+        Path file = Paths.get(workingDirectory.getPath() + "/src/ProductTestData.txt");
 
         try
         {
